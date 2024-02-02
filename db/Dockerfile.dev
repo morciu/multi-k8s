@@ -1,0 +1,7 @@
+FROM mysql:latest
+
+RUN chown -R mysql:root /var/lib/mysql/
+
+COPY .env /.env
+
+ENV MYSQL_ROOT_PASSWORD=$MYSQL_PASSWORD

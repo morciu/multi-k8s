@@ -1,0 +1,61 @@
+# Ignore Python related files and directories
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.pyo
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.pyo
+*.egg-info/
+dist/
+build/
+lib/
+bin/
+include/
+lib64/
+lib64
+pyvenv.cfg
+pyvenv.cfg.txt
+pyvenv-launcher
+share/
+*.log
+*.sqlite3
+
+# Ignore Node.js related files and directories
+node_modules/
+
+# Ignore React build artifacts
+build/
+dist/
+*.log
+
+# Ignore environment files
+.env
+
+# Ignore database-related files
+db.sqlite
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore Docker-related files (if applicable)
+.docker/
+
+# Ignore IDE-specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Ignore virtual environment
+venv/
+
+# Ignore miscellaneous files
+.DS_Store
+Thumbs.db
