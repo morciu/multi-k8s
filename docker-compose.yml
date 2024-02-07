@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./db
+    restart: always
+    env_file:
+      - .env
+  frontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./frontend
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '3050:80'
+    depends_on:
+      - frontend
+      - api
+  api:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    ports:
+      - "5000:5000"
