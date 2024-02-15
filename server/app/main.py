@@ -1,8 +1,6 @@
 from typing import Union
 
 from fastapi import FastAPI, Depends
-from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
 from fastapi.openapi import docs
 from fastapi.openapi import utils
 
@@ -14,13 +12,13 @@ from . import models
 app = FastAPI()
 
 # Set up Swagger
-@app.get("/docs")
+@app.get("/docs", include_in_schema=False, name="docs")
 async def swagger():
     return docs.get_swagger_ui_html(
         openapi_url="/openapi.json", title="docs"
     )
 
-@app.get("/openapi.json")
+@app.get("/openapi.json", include_in_schema=False)
 def openapi():
     return utils.get_openapi(
         title="FastAPI"
@@ -36,19 +34,22 @@ def get_db():
 
 
 @app.post("/users/")
-def create_user(user: models.UserCreate, db: Session = Depends(get_db)):
+async def create_user(user: models.UserCreate, db: Session = Depends(get_db)):
+    print(user)
     db_user = models.User(email=user.email, name=user.name)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
     return db_user
 
+@app.get("/users")
+async def get_users(db: Session = Depends(get_db)):
+    result = db.query(models.User).all()
+    return result
+
+
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"message": "El Root"}
 
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
