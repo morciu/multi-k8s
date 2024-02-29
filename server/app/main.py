@@ -9,6 +9,9 @@ from sqlalchemy.orm import Session
 from . import db_config
 from . import models
 
+
+models.Base.metadata.create_all(bind=db_config.engine)
+
 app = FastAPI()
 
 # Set up Swagger
@@ -35,7 +38,6 @@ def get_db():
 
 @app.post("/users/")
 async def create_user(user: models.UserCreate, db: Session = Depends(get_db)):
-    print(user)
     db_user = models.User(email=user.email, name=user.name)
     db.add(db_user)
     db.commit()
@@ -46,7 +48,6 @@ async def create_user(user: models.UserCreate, db: Session = Depends(get_db)):
 async def get_users(db: Session = Depends(get_db)):
     result = db.query(models.User).all()
     return result
-
 
 
 @app.get("/")
