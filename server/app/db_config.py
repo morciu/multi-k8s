@@ -16,15 +16,11 @@ MYSQL_HOST = os.getenv("MYSQL_HOST")
 MYSQL_PORT = os.getenv("MYSQL_PORT")
 
 
-SQLALCHEMY_DATABASE_URL = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}/{MYSQL_DATABASE}"
+SQLALCHEMY_DATABASE_URL = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
 
-print(SQLALCHEMY_DATABASE_URL)
-print(SQLALCHEMY_DATABASE_URL)
-print(SQLALCHEMY_DATABASE_URL)
-print(SQLALCHEMY_DATABASE_URL)
+print(f'url: {SQLALCHEMY_DATABASE_URL}')
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

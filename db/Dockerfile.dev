@@ -3,7 +3,7 @@ FROM mysql:latest
 RUN chown -R mysql:root /var/lib/mysql/
 
 ENV MYSQL_ROOT_PASSWORD=pass
-ENV MYSQL_DATABASE=mysql_db
+ENV MYSQL_DATABASE=appdb
 ENV MYSQL_USER=mysql_user
 ENV MYSQL_PASSWORD=pass
 ENV MYSQL_PORT=3306
