@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 class TestUsersEndpoints(unittest.TestCase):
     
     def test_get_users(self):
-        self.assertTrue(True)
+        self.assertTrue(False)
 
 
 if __name__ == "__main__":
