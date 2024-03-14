@@ -9,8 +9,8 @@ services:
     #   - .env
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-    # ports:
-    #   - 3306:3306
+    ports:
+      - 3306:3306
   frontend:
     build:
       dockerfile: Dockerfile.dev
@@ -33,3 +33,4 @@ services:
       - "5000:5000"
     depends_on:
       - db
+    restart: always
