@@ -19,7 +19,7 @@ jobs:
     - name: Build and test FastAPI image
       run: |
         docker build -t morciu/docker-multi-py-test -f ./server/Dockerfile.dev ./server
-        docker run morciu/docker-multi-py-test python ./server/app/test.py
+        docker run morciu/docker-multi-py-test python ./server/app/tests.py
 
     - name: Build other images
       run: |
