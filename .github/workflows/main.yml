@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
     - name: Build and test FastAPI image
       run: |
         docker build -t morciu/docker-multi-py-test -f ./server/Dockerfile.dev ./server
-        docker run morciu/docker-multi-py-test python ./server/app/test.py
+        docker run morciu/docker-multi-py-test python -m unittest discover
 
     - name: Build other images
       run: |
