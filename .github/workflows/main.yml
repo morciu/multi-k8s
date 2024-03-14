@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v1
+
+    - name: Build and test FastAPI image
+      run: |
+        docker build -t morciu/docker-multi-py-test -f ./server/Dockerfile.dev ./server
+        docker run morciu/docker-multi-py-test python ./server/app/test.py
+
+    - name: Build other images
+      run: |
+        docker build -t morciu/sub-db ./db
+        docker build -t morciu/sub-frontend ./frontend
+        docker build -t morciu/sub-nginx ./nginx
+        docker build -t morciu/sub-server ./server
