@@ -35,6 +35,9 @@ jobs:
         docker push morciu/sub-frontend
         docker push morciu/sub-nginx
         docker push morciu/sub-server
+        
+    - name: Generate deployment package
+      run: zip -r deploy.zip . -x '*.git*'
 
     - name: Deploy to Elastic Beanstalk
       uses: morciu/docker-py-react-mysql@HEAD
