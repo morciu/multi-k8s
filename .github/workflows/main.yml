@@ -35,3 +35,15 @@ jobs:
         docker push morciu/sub-frontend
         docker push morciu/sub-nginx
         docker push morciu/sub-server
+
+    - name: Deploy to Elastic Beanstalk
+      uses: morciu/docker-py-react-mysql@v18
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+        application_name: docker-multi-py
+        environment_name: Docker-multi-py-env
+        existing_bucket_name: elasticbeanstalk-eu-north-1-238574584568
+        region: eu-north-1
+        version_label: ${{ github.sha }}
+        deployment_package: deploy.zip
