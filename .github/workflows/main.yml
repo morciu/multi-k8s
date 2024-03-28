@@ -23,7 +23,6 @@ jobs:
 
     - name: Build other images
       run: |
-        docker build -t morciu/sub-db ./db
         docker build -t morciu/sub-frontend ./frontend
         docker build -t morciu/sub-nginx ./nginx
         docker build -t morciu/sub-server ./server
@@ -31,7 +30,6 @@ jobs:
     - name: Login and Push to Docker Hub
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker push morciu/sub-db
         docker push morciu/sub-frontend
         docker push morciu/sub-nginx
         docker push morciu/sub-server
