@@ -37,7 +37,7 @@ jobs:
         docker push morciu/sub-server
 
     - name: Deploy to Elastic Beanstalk
-      uses: morciu/docker-py-react-mysql@v18
+      uses: morciu/docker-py-react-mysql@HEAD
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
         aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
