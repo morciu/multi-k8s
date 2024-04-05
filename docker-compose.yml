@@ -10,7 +10,7 @@ services:
     mem_limit: 128m
     hostname: nginx
     ports:
-      - '3050:80'
+      - '80:80'
     depends_on:
       - frontend
       - api
@@ -24,6 +24,6 @@ services:
       - MYSQL_PASSWORD=$MYSQL_PASSWORD
       - MYSQL_PORT=$MYSQL_PORT
       - MYSQL_HOST=$MYSQL_HOST
-    ports:
-      - "5000:5000"
+    # ports:
+    #   - "5000:5000"
     restart: always
