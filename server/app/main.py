@@ -9,8 +9,10 @@ from sqlalchemy.orm import Session
 from . import db_config
 from . import models
 
-
-models.Base.metadata.create_all(bind=db_config.engine)
+try:
+    models.Base.metadata.create_all(bind=db_config.engine)
+except Exception as err:
+    print(f"\n{err}\n")
 
 app = FastAPI()
 
