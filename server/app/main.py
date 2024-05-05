@@ -10,7 +10,7 @@ from . import db_config
 from . import models
 
 
-models.Base.metadata.create_all(bind=db_config.engine)
+models.Base.metadata.create_all(bind=db_config.engine, checkfirst=True)
 
 app = FastAPI()
 
