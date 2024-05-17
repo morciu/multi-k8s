@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: morciu/sub-server
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MYSQL_USER
+              value: mysql_user
+            - name: MYSQL_HOST
+              value: db-cluster-ip-service
+            - name: MYSQL_PORT
+              value: '3306'
+            - name: MYSQL_DATABASE
+              value: appdb
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysqlpassword
+                  key: MYSQL_PASSWORD
