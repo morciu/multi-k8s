@@ -10,7 +10,7 @@ from . import db_config
 from . import models
 
 try:
-    models.Base.metadata.create_all(bind=db_config.engine)
+    models.Base.metadata.create_all(bind=db_config.engine, check_first=True)
 except Exception as err:
     print(f"\n{err}\n")
 
