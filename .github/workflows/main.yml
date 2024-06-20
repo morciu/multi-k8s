@@ -20,9 +20,9 @@ jobs:
           docker run morciu/docker-multi-py-test python -m unittest discover
  
       - name: Set Service Key
-        uses: 'google-github-actions/auth@v0'
+        uses: 'google-github-actions/auth@v2'
         with:
-          credentials_json: '${{ secrets.GKE_SA_KEY }}'
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
  
       - name: Set Project
         uses: google-github-actions/setup-gcloud@v0
