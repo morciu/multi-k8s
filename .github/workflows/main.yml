@@ -55,5 +55,5 @@ jobs:
       - name: Apply
         run: |-
           kubectl apply -f k8s
-          kubectl set image deployments/server-deployment server=morciu/sub-frontend:${{ env.SHA }}
-          kubectl set image deployments/client-deployment client=morciu/sub-server:${{ env.SHA }}
+          kubectl set image deployments/frontend-deployment frontend=morciu/sub-frontend:${{ env.SHA }}
+          kubectl set image deployments/server-deployment server=morciu/sub-server:${{ env.SHA }}
