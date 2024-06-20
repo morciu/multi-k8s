@@ -41,7 +41,7 @@ jobs:
  
       - name: Build
         run: |-
-          docker build -t morciu/sub-frontend:latest -t morciu/sub-frontend:${{ env.SHA }} -f ./client/Dockerfile ./frontend
+          docker build -t morciu/sub-frontend:latest -t morciu/sub-frontend:${{ env.SHA }} -f ./frontend/Dockerfile ./frontend
           docker build -t morciu/sub-server:latest -t morciu/sub-server:${{ env.SHA }} -f ./server/Dockerfile ./server
  
       - name: Push
