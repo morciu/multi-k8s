@@ -19,7 +19,7 @@ spec:
             - containerPort: 5000
           env:
             - name: MYSQL_USER
-              value: mysql_user
+              value: root
             - name: MYSQL_HOST
               value: db-cluster-ip-service
             - name: MYSQL_PORT
