@@ -14,6 +14,7 @@ try:
     print("created stuff")
 except Exception as err:
     print(f"\n{err}\n")
+    print("IT BROKE!")
 
 app = FastAPI()
 
