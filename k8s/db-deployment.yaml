@@ -16,29 +16,29 @@ spec:
         - name: mysql-storage
           persistentVolumeClaim:
             claimName: database-persistent-volume-claim
-      initContainers:
-        - name: init-db
-          image: mysql
-          command:
-            - "sh"
-            - "-c"
-            - >
-              sleep 30 &&
-              mysql-u root --password=$MYSQL_ROOT_PASSWORD -e "
-              CREATE DATABASE IF NOT EXISTS appdb;
-              CREATE USER 'mysql_user'@'%' IDENTIFIED BY 'pass';
-              GRANT ALL PRIVILEGES ON appdb.* TO 'mysql_user'@'%';
-              GRANT CREATE, ALTER, INDEX, INSERT, UPDATE, DELETE, SELECT ON appdb.* TO 'mysql_user'@'%';
-              FLUSH PRIVILEGES;"
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysqlpassword
-                  key: MYSQL_ROOT_PASSWORD
-          volumeMounts:
-            - name: mysql-storage
-              mountPath: /var/lib/mysql
+      # initContainers:
+      #   - name: init-db
+      #     image: mysql
+      #     command:
+      #       - "sh"
+      #       - "-c"
+      #       - >
+      #         sleep 30 &&
+      #         mysql-u root --password=$MYSQL_ROOT_PASSWORD -e "
+      #         CREATE DATABASE IF NOT EXISTS appdb;
+      #         CREATE USER 'mysql_user'@'%' IDENTIFIED BY 'pass';
+      #         GRANT ALL PRIVILEGES ON appdb.* TO 'mysql_user'@'%';
+      #         GRANT CREATE, ALTER, INDEX, INSERT, UPDATE, DELETE, SELECT ON appdb.* TO 'mysql_user'@'%';
+      #         FLUSH PRIVILEGES;"
+      #     env:
+      #       - name: MYSQL_ROOT_PASSWORD
+      #         valueFrom:
+      #           secretKeyRef:
+      #             name: mysqlpassword
+      #             key: MYSQL_ROOT_PASSWORD
+      #     volumeMounts:
+      #       - name: mysql-storage
+      #         mountPath: /var/lib/mysql
       containers:
         - name: db
           image: mysql
