@@ -10,10 +10,8 @@ from . import db_config
 from . import models
 
 try:
-    @app.on_event("startup")
-    def startup():
-        models.Base.metadata.create_all(bind=db_config.engine)
-        print("CREATED STUFF")
+    models.Base.metadata.create_all(bind=db_config.engine)
+    print("created stuff")
 except Exception as err:
     print(f"\n{err}\n")
 
