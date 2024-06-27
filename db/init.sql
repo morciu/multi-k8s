@@ -4,6 +4,8 @@ USE appdb;
 
 CREATE USER 'mysql_user'@'%' IDENTIFIED BY 'pass';
 GRANT ALL PRIVILEGES ON appdb TO 'mysql_user'@'%';
+GRANT CREATE, ALTER, INDEX, INSERT, UPDATE, DELETE, SELECT ON appdb TO 'mysql_user'@'%';
+
 FLUSH PRIVILEGES;
 
 USE appdb;
