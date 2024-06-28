@@ -25,6 +25,7 @@ spec:
             - "sh"
             - "-c"
             - >
+              sleep 10 &&
               mysql -u root --password=$MYSQL_ROOT_PASSWORD -e "
               CREATE DATABASE IF NOT EXISTS appdb;
               CREATE USER 'mysql_user'@'%' IDENTIFIED BY 'pass';
