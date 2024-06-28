@@ -19,6 +19,8 @@ spec:
       initContainers:
         - name: init-db
           image: mysql
+          ports:
+            - containerPort: 3306
           command:
             - "sh"
             - "-c"
